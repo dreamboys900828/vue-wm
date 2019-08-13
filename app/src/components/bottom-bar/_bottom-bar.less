@@ -1,0 +1,200 @@
+.bottom-bar {
+  .cross{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-top: 1.64rem;
+    background: rgba(0, 0, 0, .3);
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+  .shopBox{
+    position: fixed;
+    bottom: 0.5rem;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    header{
+      display: flex;
+      justify-content: space-between;
+      padding: 0.0703rem 0.1406rem;
+      height: 0.33rem;
+      line-height: 0.33rem;
+      background: #eceff1;
+      h4{
+        color: #666666;
+        font-size: 0.164rem;
+      }
+      div{
+        width: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        i{
+          color: rgba(187, 187, 187);
+          font-size: 0.18rem;
+          padding-top: -0.05rem;
+        }
+        span{
+          font-size: 0.14rem;
+          color: #666666;
+        }
+      }
+    }
+    .cart_food_details{
+      min-height: 0.8rem;
+      max-height: 3rem;
+      overflow: scroll;
+      background: #ffffff;
+      .cart_food_li{
+        display: flex;
+        justify-content: space-between;
+        padding: 0.1406rem  0.11rem;
+        width: 3.515rem;
+        line-height: 0.23rem;
+        font-size: 0;
+        .cart_list_num{
+          width: 1.9336rem;
+          .ellipsis{
+            color: #666666;
+          }
+          p:nth-child(1){
+            font-size: 0.164rem;
+          }
+          p:nth-child(2){
+            font-size: 0.12rem;
+          }
+        }
+        .cart_list_price{
+          width: 0.35rem;
+          span:nth-child(1){
+            color: #ff6600;
+            font-size: 0.1406rem;
+          }
+          span:nth-child(2){
+            font-weight: bold;
+            color: #ff6600;
+            font-size: 0.164rem;
+          }
+        }
+        .cart_list_control{
+          display: flex;
+          justify-content: space-between;
+          width: 0.6563rem;
+          .cut{
+            font-size: 0.2rem;
+            color: #3190e8;
+          }
+          span{
+            color: #666666;
+            font-size: 0.1523rem;
+          }
+          .plus{
+            font-size: 0.2rem;
+            color: #3190e8;
+          }
+        }
+      }
+    }
+  }
+  .contain{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #333333;
+    height: 0.5rem;
+    z-index: 4;
+    .submit-button {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 1.17rem;
+      height: 0.5rem;
+      line-height: 0.4688rem;
+      text-align: center;
+      color: #ffffff;
+      font-size: 0.164rem;
+      background: #4cd964;
+      border: 0.01rem solid #4cd964;
+      box-sizing: border-box;
+    }
+    .disabled-button{
+      background: #535356;
+      border: 0.01rem solid #535356;
+    }
+    .cart_icon_container{
+      position: fixed;
+      bottom: -0.03rem;
+      left: 0.1rem;
+      width: 0.5531rem;
+      height: 0.5531rem;
+      background: #333333;
+      border-radius: 50%;
+      margin-bottom: 0.1rem;
+      .little-circle{
+        position: fixed;
+        bottom: 0.025rem;
+        left: 0.14rem;
+        width: 0.45rem;
+        height: 0.45rem;
+        border-radius: 50%;
+        margin-bottom: 0.1rem;
+        background: #3190e8;
+        .shop-car{
+          position: fixed;
+          left: 0.16rem;
+          bottom: 0.14rem;
+          font-size: 0.38rem;
+          color: #ffffff;
+        }
+        .total_select_count {
+          position: fixed;
+          bottom: 0.48rem;
+          left: 0.43rem;
+          width: 0.17rem;
+          height: 0.17rem;
+          background: crimson;
+          color: #ffffff;
+          font-size: 0.12rem;
+          text-align: center;
+          line-height: 0.17rem;
+          font-style: normal;
+          border-radius: 50%;
+        }
+      }
+      .little-circle-disabled{
+        background: #3d3d3f;
+      }
+    }
+    .cart_num{
+      position: fixed;
+      bottom: 0;
+      left: 0.6rem;
+      color: #ffffff;
+      margin-left: 0.17rem;
+      width: 0.6766rem;
+      height: 0.5rem;
+      .total-money{
+        position: fixed;
+        bottom: 0.2rem;
+        height: 0.26rem;
+        font-size: 0.1875rem;
+      }
+      .drive-money{
+        position: fixed;
+        bottom: 0.03rem;
+        height: 0.17rem;
+        font-size: 0.12rem;
+      }
+    }
+  }
+  .slowAlert-enter, .slowAlert-leave-to{
+    opacity: 0;
+    transform: translateY(3.4703rem);
+  }
+  .slowAlert-enter-active, .slowAlert-leave-active{
+    transition: all .5s ease-in;
+  }
+}

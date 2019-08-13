@@ -1,0 +1,451 @@
+// Vars
+@font-s: 0.12rem;
+@backColor: #3190e8;
+@priceColor: #f60;
+.shopDetail {
+  height: 100%;
+
+  .banner {
+    position: fixed;
+    height: 1.44rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0.1rem;
+    background: #776789;
+    z-index: 2;
+
+    .back {
+      margin-top: -0.05rem;
+      margin-left: -0.1rem;
+      width: 0.5rem;
+      height: 0.3rem;
+      line-height: 0.3rem;
+
+      .arrow-back {
+        font-size: 0.36rem;
+        color: #ffffff;
+      }
+    }
+
+    .ban-shopImg {
+      margin-top: -0.24rem;
+      float: left;
+      width: 0.67rem;
+      height: 0.67rem;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .right-ban-shop {
+      padding-left: 0.1rem;
+      margin-top: -0.24rem;
+      float: left;
+      width: 2.7rem;
+      font-size: 0.12rem;
+      color: #ffffff;
+
+      .title {
+        margin-bottom: 0.1rem;
+      }
+
+      .desc {
+        margin-top: 0.16rem;
+      }
+
+      .arrow-right {
+        position: absolute;
+        top: 0.45rem;
+        right: 0;
+        font-size: 0.26rem;
+      }
+    }
+
+    .foot-ban {
+      position: absolute;
+      bottom: 0.5rem;
+      left: 0;
+      width: 100%;
+      height: 0.18rem;
+      line-height: 0.18rem;
+      color: #ffffff;
+
+      .notice {
+        position: absolute;
+        width: 3.39rem;
+        left: 0.1rem;
+        height: 100%;
+        font-size: 0.12rem;
+
+        .cut-sale {
+          color: #f07373;
+          background: #ffffff;
+          border: 0;
+        }
+
+        .sales {
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
+      }
+
+      .arrow-right {
+        position: absolute;
+        top: 0;
+        right: 0.05rem;
+        font-size: 0.16rem;
+      }
+    }
+
+    .van-tabs {
+      position: absolute;
+      top: 1.2rem;
+      left: 0;
+      width: 100%;
+      border-bottom: 0.0015rem solid #e4e4e4;
+    }
+  }
+
+  .main {
+    padding-top: 1.64rem;
+    height: 6rem;
+
+    .menu_left {
+      position: fixed;
+      width: 0.89rem;
+      background: #f5f5f5;
+
+      .menu_left_li {
+        width: 0.71rem;
+        height: 0.33rem;
+        line-height: 0.33rem;
+        padding: 0.164rem 0.0703rem;
+        border-bottom: 0.025rem solid #ededed;
+        border-left: 0.015rem solid #f8f8f8;
+        position: relative;
+        font-size: 0.14rem;
+        color: #666666;
+        text-align: center;
+      }
+
+      .activity_menu {
+        border-left: 0.015rem solid #3190e8;
+        background-color: #fff;
+      }
+    }
+
+    .menu_right {
+      margin-left: 0.89rem;
+      padding-bottom: 0.5rem;
+      width: 2.859rem;
+      height: 5.5rem;
+      overflow: scroll;
+
+      .shops-li {
+        .menu_detail_header {
+          background: #f5f5f5;
+          padding: 0.09rem;
+
+          .menu_detail_header_left {
+            width: 2.671rem;
+            height: 0.33rem;
+            line-height: 0.33rem;
+
+            .menu_item_title {
+              color: #666666;
+              font-size: 0.16rem;
+              font-weight: bold;
+            }
+
+            .menu_item_description {
+              font-size: 0.12rem;
+              color: #999999;
+            }
+          }
+        }
+
+        .menu_detail_list {
+          width: 2.671rem;
+          height: 0.918rem;
+          background: #ffffff;
+          border-bottom: 0.001rem solid #e4e4e4;
+          padding: 0.14rem 0.0937rem;
+
+          .menu_detail_link {
+            width: 2.671rem;
+            height: 0.6368rem;
+
+            .menu_food_img {
+              float: left;
+              margin-right: 0.093rem;
+              width: 0.4688rem;
+              height: 0.4688rem;
+
+              img {
+                width: 100%;
+              }
+            }
+
+            .menu_food_description {
+              float: left;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-around;
+              height: 0.636rem;
+
+              .food_description_head {
+                font-size: 0.164rem;
+                color: #595757;
+                font-weight: bold;
+                margin-bottom: 0.0468rem;
+              }
+
+              .food_description_content {
+                color: #999999;
+                font-size: 0.12rem;
+              }
+
+              .food_description_sale_rating {
+                color: #333333;
+                font-size: 0.12rem;
+              }
+            }
+          }
+
+          .menu_detail_footer {
+            display: flex;
+            justify-content: space-between;
+            height: 0.21rem;
+            margin: 0.07rem 0 0 0.562rem;
+
+            .food_price {
+              font-size: 0;
+              width: 0.3314rem;
+              color: #ff6600;
+
+              span:nth-child(1) {
+                font-size: 0.12rem;
+              }
+
+              span:nth-child(2) {
+                font-size: 0.164rem;
+              }
+            }
+
+            .cart_button {
+              i {
+                font-size: 0.2rem;
+                color: #3190e8;
+              }
+
+              .cart_num {
+                text-align: center;
+                display: inline-block;
+                width: 0.234rem;
+                height: 0.17rem;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .ratingContainer {
+      background: #f5f5f5;
+
+      .rating_header {
+        height: 0.7434rem;
+        background: #ffffff;
+        padding: 0.1875rem 0.117rem;
+        margin-bottom: 0.117rem;
+
+        .rating_header_left {
+          float: left;
+          width: 1.5rem;
+          height: 100%;
+          text-align: center;
+
+          p:nth-child(1) {
+            height: 0.34rem;
+            font-size: 0.2812rem;
+            color: #ff6600;
+          }
+
+          p:nth-child(2) {
+            width: 100%;
+            height: 0.21rem;
+            font-size: 0.1523rem;
+            margin-bottom: 0.0234rem;
+            color: #666666;
+          }
+
+          p:nth-child(3) {
+            height: 0.17rem;
+            color: #999999;
+            font-size: 0.12rem;
+          }
+        }
+
+        .rating_header_right {
+          float: left;
+
+          p {
+            height: 0.23rem;
+            line-height: 0.23rem;
+
+            span {
+              float: left;
+              color: #666666;
+              font-size: 0.152rem;
+              margin-right: 0.117rem;
+            }
+
+            .rating_container {
+              float: left;
+              width: 0.76rem;
+              height: 0.0938rem;
+            }
+
+            .rating_num {
+              float: right;
+              font-size: 0.1289rem;
+              color: #ff6600;
+              margin-left: 0.117rem;
+            }
+
+            .delivery_time {
+              color: #999999;
+              font-size: 0.12rem;
+            }
+          }
+
+        }
+      }
+
+      .tag_list_ul {
+        width: 3.5156rem;
+        height: 1.55rem;
+        background: #ffffff;
+        padding: .1171rem;
+
+        li {
+          float: left;
+          color: #6d7885;
+          height: 0.2rem;
+          line-height: 0.2rem;
+          padding: 0.0703rem;
+          background-color: #ebf5ff;
+          border-radius: .05rem;
+          margin: 0 0.0937rem 0.0468rem 0;
+          text-align: center;
+          font-size: 0.14rem;
+        }
+
+        .unsatisfied {
+          background: #f5f5f5;
+          color: #aaaaaa;
+        }
+
+        .tagActivity {
+          background: #3190e8;
+          color: #ffffff;
+        }
+      }
+
+      .rating_list_ul {
+        width: 3.515rem;
+        padding: 0 0.117rem;
+        background: #ffffff;
+
+        .rating_list_li {
+          padding: 0.14rem;
+          border-top: 0.001rem solid #f1f1f1;
+
+          .user_avatar {
+            float: left;
+            width: 0.351rem;
+            height: 0.351rem;
+            margin-right: 0.1875rem;
+            border-radius: 50%;
+          }
+
+          .rating_list_details {
+            float: left;
+            width: 2.696rem;
+
+            header {
+              width: 100%;
+              height: 0.3768rem;
+              margin-bottom: 0.07rem;
+              display: flex;
+              justify-content: space-between;
+
+              .username_star {
+                width: 1.619rem;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                color: #666666;
+                font-size: 0.1289rem;
+
+                .username {
+                  margin-bottom: 0.0468rem;
+                }
+
+                .star_desc {
+                  .rating_container {
+                    float: left;
+                  }
+
+                  .time_spent_desc {
+                    float: left;
+                    margin-left: 0.035rem;
+                  }
+                }
+              }
+
+              .rated_at {
+                height: 100%;
+                color: #999999;
+                font-size: 0.12rem;
+              }
+            }
+
+            .food_img_ul {
+              margin-bottom: 0.0937rem;
+
+              li {
+                float: left;
+
+                img {
+                  width: 0.703rem;
+                  height: 0.703rem;
+                  margin-right: 0.0937rem;
+                }
+              }
+            }
+
+            .food_name_ul {
+              //height: 0.3253rem;
+              .ellipsis {
+                float: left;
+                width: 0.41rem;
+                height: 0.18rem;
+                padding: 0.0468rem;
+                border: 0.005rem solid #ebebeb;
+                margin: 0 0.07rem 0.04rem 0;
+                color: #999999;
+                font-size: 0.1289rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

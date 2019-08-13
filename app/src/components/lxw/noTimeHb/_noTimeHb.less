@@ -1,0 +1,116 @@
+
+
+.noTimeHb {
+  .red{
+    padding: 0.23438rem 0.11719rem;
+    box-sizing: border-box;
+  }
+
+  //导航栏
+  .van-nav-bar{
+    background: #3190e8;
+    color: white;
+
+    :before{
+      color: white;
+      height: 0.2344rem;
+      font-size: 0.25rem;
+      font-weight:200;
+      margin-left: -0.1rem;
+      margin-top: -0.1rem;
+    }
+    span,div{
+      color: white;
+    }
+    div{
+      font-weight: 800;
+      font-size: 0.1875rem;
+    }
+  }
+
+  /*红包*/
+  .redPacket{
+    position: relative;
+    height: 0.9739rem;
+    padding:0.23rem 0.1172rem 0.1875rem;
+    box-sizing: border-box;
+    border-radius: 0.06rem;
+    //background: antiquewhite;
+    background: url("../../../assets/img/greenBG.png") repeat-x top center ;
+    background-size: 0.12rem;
+    margin-bottom: 0.117rem;
+
+    >div:nth-child(1){
+      display: inline-block;
+      width: 0.981rem;
+      height: 0.696rem;
+      font-family: Helvetica Neue,Tahoma,Arial;
+      color: #CCCCCC;
+      border-right: 1px dashed #999;
+      font-weight: 700;
+      /*￥*/
+      span{
+        font-size: 0.2343rem;
+        b{
+          font-size: 0.46875rem;
+        }
+      }
+      p{
+        font-size: 0.096rem;
+        color: #999;
+        margin-top: 0.1rem;
+
+      }
+    }
+    >div:nth-child(2){
+      width: 1.95rem;
+      height: 0.696rem;
+      display: inline-block;
+      margin-left: 0.1rem;
+      span{
+        margin-top: -15px;
+        color: #666;
+      }
+      p{
+        font-size: 0.096rem;
+        color: #999;
+      }
+      >p:nth-child(2){
+        line-height: 0.2rem;
+
+      }
+    }
+    >div:nth-child(3){
+      display: inline-block;
+      /*height: 1rem;*/
+      /*margin-bottom: 0.5rem;*/
+      /*line-height: 0.552rem;*/
+      vertical-align: 0.15rem;
+      color: red;
+      font-size: 0.175rem;
+    }
+  }
+}
+//已过期图标
+#expired{
+  width: 0.7rem;
+  position: absolute;
+  top: 0rem;
+  right: 0.1rem;
+
+
+
+  //display: inline-block;
+}
+//限品类
+.aiguo{
+  //position: relative;
+  //margin-top: 0;
+  //bottom: 0;
+  margin: 0.094rem;
+  font-size: 0.096rem;
+  color: #999999;
+  padding-left: 0.09375rem;
+  box-sizing: border-box;
+}
+

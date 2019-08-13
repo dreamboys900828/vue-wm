@@ -1,0 +1,122 @@
+.searchGood {
+    // Vars
+  @headerBgColor: #3190e8;
+  .header{
+    .van-nav-bar{
+      background: @headerBgColor;
+      .van-nav-bar__left{
+        left: 0.05rem;
+        .back{
+          color: #ffffff;
+          font-size: 0.2rem;
+        }
+      }
+      .van-nav-bar__title{
+        font-size: 0.1875rem;
+        color: #ffffff;
+      }
+    }
+  }
+  .main{
+    background: #ffffff;
+    border-bottom: 0.005rem solid #e4e4e4;
+    .inputContainer{
+      padding: 0.1171rem;
+      .inputSearch{
+        width: 2.69rem;
+        padding: 0 0.05rem;
+        height: 0.34rem;
+        font-size: 0.15rem;
+        background: #f2f2f2;
+        border-radius: 0.05rem;
+        box-sizing: border-box;
+      }
+      .send{
+        padding: 0 0.058rem;
+        width: 0.77rem;
+        height: 0.3516rem;
+        background: @headerBgColor;
+        border: 0;
+        border-radius: 0.05rem;
+        color: #ffffff;
+      }
+    }
+  }
+  .result{
+    margin-top: 0.0292rem;
+    background: #ffffff;
+    .no-result{
+      height: 0.41rem;
+      line-height: 0.41rem;
+      text-align: center;
+      font-size: 0.152rem;
+      color: #333333;
+    }
+    .search_history{
+      .title_restaurant{
+        padding: 0 0.1171rem;
+        height: 0.46rem;
+        line-height: 0.46rem;
+        color: #666666;
+        background: #f5f5f5;
+      }
+      .history_ul{
+        .history_list{
+          display: flex;
+          justify-content: space-between;
+          height: 0.46rem;
+          line-height: 0.46rem;
+          padding: 0 0.11rem;
+          border-bottom: 0.005rem solid #e4e4e4;
+          .history_text{
+            width: 3rem;
+          }
+          i{
+            color: #a9d7db;
+            font-size: 0.2rem;
+          }
+        }
+      }
+      .clear_history{
+        height: 0.46rem;
+        line-height: 0.46rem;
+        text-align: center;
+        color: #3190E8;
+        font-size: 0.164rem;
+        background: #ffffff;
+      }
+      .list_container{
+        .list_li{
+          padding: 0.1171rem;
+          border-bottom: 0.00578rem solid #e4e4e4;
+          .item_left{
+            float: left;
+            width: 0.3984rem;
+            height: 0.753rem;
+            img{
+              width: 100%;
+            }
+          }
+          .item_right{
+            padding-left: 0.05rem;
+            float: left;
+            width: 3.0386rem;
+            height: 0.693rem;
+            .item_right_text{
+              padding-bottom: 0.05rem;
+              height: 100%;
+              font-size: 0.1289rem;
+              color: #333333;
+              text-align: left;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-around;
+              box-sizing: border-box;
+              border-bottom: 0.00578rem solid #e4e4e4;
+            }
+          }
+        }
+      }
+    }
+  }
+}

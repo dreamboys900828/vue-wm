@@ -1,0 +1,289 @@
+@headerBgColor: #3190e8;
+@font-s: 0.13rem;
+.submitOrder {
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+
+    .van-nav-bar {
+      background: @headerBgColor;
+
+      .van-nav-bar__left {
+        left: 0.05rem;
+
+        .back {
+          color: #ffffff;
+          font-size: 0.2rem;
+        }
+      }
+
+      .van-nav-bar__title {
+        font-size: 0.1875rem;
+        color: #ffffff;
+      }
+
+      .van-nav-bar__right {
+        .right-text {
+          color: #ffffff;
+          font-size: 0.153rem;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+
+  .container {
+    padding-top: 0.45rem;
+    padding-bottom: 0.5rem;
+
+    .address_container {
+      display: flex;
+      justify-content: space-between;
+      height: 0.82rem;
+      line-height: 0.82rem;
+      background: #ffffff;
+      padding: 0 0.14rem;
+      border-bottom: 0.025rem solid transparent;
+      border-image: 2 repeating-linear-gradient(-45deg, #bb9cff 0, #ccb7ff 0.05rem,
+      transparent 0, transparent 0.1rem, #618eff 0, #92a5ff 0.15rem, transparent 0, transparent 0.2rem);
+      color: #595757;
+
+      .address-left {
+        display: flex;
+        justify-content: space-between;
+
+        .address_detail_container {
+          header {
+            margin-top: -0.125rem;
+            margin-left: 0.05rem;
+            color: #333333;
+            font-size: 0.152rem;
+            width: 1.834rem;
+            height: 0.23rem;
+
+            span:nth-child(1) {
+              font-size: 0.1875rem;
+              font-weight: bold;
+            }
+          }
+
+          .address_detail {
+            margin-left: 0.05rem;
+            display: flex;
+            align-items: center;
+            font-size: 0.12rem;
+            color: #777777;
+
+            span {
+              padding: 0 0.0468rem;
+              margin-right: 0.07rem;
+              border-radius: 0.038rem;
+              line-height: 1em;
+              color: #ffffff;
+              background: #3190E8;
+            }
+          }
+        }
+      }
+
+      .location {
+        padding: 0 0.04rem 0 0;
+        font-size: 0.22rem;
+        color: @headerBgColor;
+      }
+
+      .arrow-right {
+        font-size: 0.17rem;
+      }
+    }
+
+    .delivery_model {
+      .container_style;
+      border-left: 0.047rem solid @headerBgColor;
+
+      .deliver_text {
+        float: left;
+        width: 0.82rem;
+        color: #333333;
+        font-size: 0.187rem;
+      }
+
+      .deliver_time {
+        float: right;
+        width: 1.76rem;
+        height: 0.56rem;
+        margin-top: 0.2rem;
+
+        .qu-send {
+          text-align: right;
+          font-size: 0.16rem;
+          color: @headerBgColor;
+          height: 0.23rem;
+          line-height: 0.23rem;
+        }
+
+        .fn-send {
+          float: right;
+          margin-top: 0.1rem;
+          margin-left: 0.18rem;
+          font-size: 0.12rem;
+          width: 0.56rem;
+          height: 0.21rem;
+          line-height: 0.21rem;
+          border-radius: 0.05rem;
+          text-align: center;
+          color: #ffffff;
+          background: @headerBgColor;
+        }
+      }
+
+    }
+
+    .pay_way {
+      .container_style;
+
+      .header_style {
+        display: flex;
+        justify-content: space-between;
+        height: 0.4795rem;
+        line-height: 0.4795rem;
+        color: #666666;
+        font-size: 0.164rem;
+
+        .more_type {
+          text-align: right;
+          width: 2.56rem;
+          font-size: 0.13rem;
+          color: #aaaaaa;
+        }
+
+        .arrow-right {
+          color: #aaaaaa;
+          font-size: 0.12rem;
+        }
+      }
+
+      .hog-bao {
+        height: 0.46rem;
+        line-height: 0.46rem;
+        font-size: 0.13rem;
+        font-weight: 100;
+        color: #aaaaaa;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    .food_list {
+      background: #ffffff;
+
+      header {
+        padding: 0.164rem;
+        font-size: 0.1875rem;
+        color: #333333;
+        border-bottom: 0.001rem solid #e4e4e4;
+
+        img {
+          height: 0.28rem;
+          width: 0.28rem;
+          vertical-align: text-top;
+          padding-right: 0.05rem;
+        }
+      }
+
+      .food_list_ul {
+        .food_item_style {
+          padding: 0 0.16rem;
+          display: flex;
+          justify-content: space-between;
+          color: #666666;
+          font-size: 0.15rem;
+          height: 0.42rem;
+          line-height: 0.42rem;
+
+          .food_name {
+            width: 2.57rem;
+          }
+
+          .fright {
+            width: 100%;
+            text-align: right;
+          }
+
+          .num_price {
+            display: flex;
+            justify-content: space-between;
+            width: 0.84rem;
+          }
+        }
+      }
+    }
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.4688rem;
+    background: #333333;
+
+    .noPay_order {
+      float: left;
+      padding-left: 0.16rem;
+      width: 2.56rem;
+      height: 0.46rem;
+      line-height: 0.46rem;
+      color: #ffffff;
+      text-align: left;
+      font-size: 0.1757rem;
+    }
+
+    .submitOrder {
+      float: right;
+      width: 1.024rem;
+      height: 0.46rem;
+      background: #56d176;
+      border: 0.005rem solid #56d176;
+      border-left: 0;
+      border-right: 0;
+      color: #ffffff;
+      font-size: 0.1757rem;
+      line-height: 0.46rem;
+      text-align: center;
+    }
+  }
+
+  .count {
+    color: #ff6600;
+  }
+
+  .container_style {
+    padding: 0 0.16rem;
+    height: 0.9375rem;
+    margin-top: 0.093rem;
+    background: #ffffff;
+    line-height: 0.9375rem;
+  }
+}
+
+.router-slid-enter-active, .router-slid-leave-active {
+  transition: all .4s;
+}
+
+.router-slid-enter, .router-slid-leave-active {
+  transform: translate3d(2rem, 0, 0);
+  opacity: 0;
+}
+
+.payment-enter, .payment-leave-to {
+  opacity: 0;
+  transform: translateY(2.34rem);
+}
+
+.payment-enter-active, .payment-leave-active {
+  transition: all .4s;
+}
