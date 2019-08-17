@@ -1,5 +1,8 @@
 <template>
   <div class="msite">
+<!--    <div class="header">-->
+<!--      <bar :title="infoList.name | omitEd"></bar>-->
+<!--    </div>-->
     <!--导航-->
     <div class="header">
       <van-nav-bar :title="infoList.name | omitEd" left-text="" fixed>
@@ -9,6 +12,7 @@
         <span slot="right" class="right-text register" @click="register">注册</span>
       </van-nav-bar>
     </div>
+
     <div class="msite_nav">
       <van-swipe :autoplay="3000" indicator-color="#3190e8">
         <van-swipe-item v-for="cate in cateList" :key="cate.id">
@@ -61,51 +65,76 @@
         </div>
       </div>
     </div>
+    <loading v-if="loading_show"></loading>
   </div>
 </template>
 
 <script>
-  import Vue from 'vue';
   import {mapMutations, mapState} from "vuex";
+  import {msiteAddress, msiteFoodTypes, shopLists} from "../../service/getData";
+  import Loading from "../common/loading/loading";
+  import Bar from "../bar/bar";
 
   export default {
     name: 'msite',
-    created() {
-      // 更改底部tabBar索引
-      this.changeTabActive(0);
-      // 获取定位
-      let gpsHash = this.$route.query.gpsHash;
-      this.gpsHash = gpsHash;
-
-      Vue.axios.get(`v2/pois/${gpsHash}`).then(res => {
-        let data = res.data;
-        this.infoList = data;
-        // 获取附近商店
-        Vue.axios.get(`shopping/restaurants?latitude=${data.latitude}&longitude=${data.longitude}`)
-          .then(res => {
-            this.shopList = res.data;
-          })
-      });
-      // 调取食品分类
-      Vue.axios.get('v2/index_entry').then(res => {
-        let cList = res.data;
-        // 处理数组
-        let newArr = [];
-        newArr.push(cList.slice(0, cList.length / 2));
-        newArr.push(cList.slice(cList.length / 2));
-        this.cateList = newArr;
-      });
-    },
+    components: {Bar, Loading},
     data() {
       return {
+        loading_show: true, // 动画
         infoList: {name: ''},
         cateList: [],
         shopList: [],
-        gpsHash: null
+        gpsHash: null,
+        sortRulers: {
+          latitude: null, // 纬度 Y string <<< 必选
+          longitude: null, // 经度 Y string <<< 必选
+          offset: 0, // 跳过多少条数据，默认0 N int 记录每次用户的发请求起始位置 每次加载20个 起始位置为0 每次+20
+          limit: 20, // 请求数据的数量，默认20 N int
+          restaurant_category_id: null, // 餐馆分类id N int 进来shop页面的值
+          restaurant_category_ids: [], // 餐馆分类id N array 在shop页面请求的时候的值
+          order_by: 4, // 排序方式id： 1：起送价、2：配送速度、3:评分、4: 智能排序(默认)、5:距离最近、6:销量最高  N int
+          delivery_mode: [], // 配送方式id N array
+          support_ids: [], // 餐馆支持特权的id 品牌商家 准时达等 商家属性
+        }
       }
+    },
+    mounted() {
+      this.initData();
     },
     methods: {
       ...mapMutations(['changeTabActive', 'changeUserLocation']),
+      async initData() {
+        // 更改底部tabBar索引
+        this.changeTabActive(0);
+        // 获取定位
+        let geoHash = this.$route.query.gpsHash;
+        let local = geoHash.split(',');
+        this.sortRulers.latitude = local[0]; // 维度
+        this.sortRulers.longitude = local[1]; // 经度
+
+        // 获取附近信息
+        this.infoList = await msiteAddress(geoHash);
+
+        // 获取附近商店
+        let shop_list = await shopLists(this.sortRulers);
+        if (shop_list.length > 0) {
+          this.shopList = shop_list;
+        } else {
+          alert('附近没有商店~');
+        }
+
+        // 调取食品分类
+        let cList = await msiteFoodTypes(geoHash);
+        if (cList.length > 0) {
+          let newArr = [];
+          newArr.push(cList.slice(0, cList.length / 2));
+          newArr.push(cList.slice(cList.length / 2));
+          this.cateList = newArr;
+        } else {
+          alert('分类没有数据~');
+        }
+        this.loading_show = false;
+      },
       login() {
         this.$router.push({path: '/login'});
       },
@@ -116,10 +145,10 @@
         this.$router.push({path: 'searchGood'});
       },
       goShop(id) {
-        this.$router.push({path: `shopDetail?geohash=${this.gpsHash}&id=${id}`});
+        this.$router.push({path: `shopDetail?geohash=${this.userLocation}&id=${id}`});
       },
       goFood(title) {
-        this.$router.push({path: `food?geohash=${this.gpsHash}&title=${title}`});
+        this.$router.push({path: `food?geohash=${this.userLocation}&title=${title}`});
       },
     },
     computed: {

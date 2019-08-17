@@ -9,7 +9,7 @@
       <van-tabbar-item icon="home-o" @click="goToMsite(geoHash)">外卖</van-tabbar-item>
       <van-tabbar-item icon="search" to="searchGood">搜索</van-tabbar-item>
       <van-tabbar-item icon="friends-o" to="order">订单</van-tabbar-item>
-      <van-tabbar-item icon="setting-o" to="mine">我的</van-tabbar-item>
+      <van-tabbar-item icon="setting-o" to="lmy">我的</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
@@ -30,6 +30,26 @@
           '/shop/food',
           '/shop/goodInfo',
           '/shop/bottom-bar',
+          '/shop/vipcard',
+          '/shop/usecard',
+          '/shop/vipdescription',
+          '/shop/download',
+          '/shop/points',
+          '/shop/balance',
+          '/shop/balanceExplain',
+          '/shop/LmyDiscounts',
+          '/shop/changePackage',
+          '/shop/commend',
+          '/shop/noTimeHb',
+          '/shop/HBexplain',
+          '/shop/mynumber',
+          '/shop/service',
+          '/shop/questionDetail',
+          '/shop/addDetail',
+          '/shop/newRess',
+          '/shop/address',
+          '/shop/setusername',
+          '/shop/info1',
         ],
       }
     },

@@ -23,9 +23,10 @@
     </ul>
 
 
-    <router-link :to="{path:'/newRess',query:{user_id:allInfo1}}">
+    <router-link :to="{path:'newRess',query:{user_id:USER_STATUS.id}}">
       <div class="input2">
-        新增地址<van-icon name="arrow" class="right_jt2"/>
+        新增地址
+        <van-icon name="arrow" class="right_jt2"/>
       </div>
     </router-link>
 
@@ -36,104 +37,106 @@
 </template>
 
 <script>
-  import Vue from "vue"
+  import {deleteAddress, getAddress} from "../../../service/getData";
+  import {mapState} from "vuex";
+
   export default {
     name: "daaress",
-    data(){
-      return{
-        allinfo1:{},
-        newRess:[],
-        delete1:"编辑",
-        Xshow:false,
+    data() {
+      return {
+        allinfo1: {},
+        newRess: [],
+        delete1: "编辑",
+        Xshow: false,
       }
     },
     methods: {
       //点击X删除
-      Xclick(value,index){
-        this.newRess.splice(index,1);
+      async Xclick(value, index) {
+        this.newRess.splice(index, 1);
         //获取删除收货地址
-        Vue.axios.delete(`https://elm.cangdu.org/v1/users/${this.allInfo1}/addresses/${value}`,
-          {params:{user_id:this.allInfo1,address_id:value}}).then((result)=>{
-          console.log(value);
-          console.log(result.data)
-        })
-
+        await deleteAddress(this.USER_STATUS.id, value);
 
       },
-
+      async getAddress() {
+        //  获取收货地址列表
+        this.newRess = await getAddress(this.USER_STATUS.id);
+        console.log(this.newRess);
+      },
       onClickLeft() {
         this.$router.go(-1);
       },
-      remove1(){
-        if(this.delete1 == "编辑"){
-          this.delete1= "完成"
-          this.Xshow=true
-        }else{
-          this.delete1= "编辑"
-          this.Xshow=false
+      remove1() {
+        if (this.delete1 === "编辑") {
+          this.delete1 = "完成"
+          this.Xshow = true
+        } else {
+          this.delete1 = "编辑"
+          this.Xshow = false
         }
       }
     },
-    created(){
-     this.allInfo1=JSON.parse(localStorage.getItem("allInfo")).user_id;
-      // console.log(this.allInfo1);
+    created() {
+      this.getAddress();
 
-    //  获取收货地址列表
-      Vue.axios.get(`https://elm.cangdu.org/v1/users/${this.allInfo1}/addresses`,{params:{user_id:this.allInfo1}}).then((result)=>{
-        this.newRess=result.data;
-        // console.log(result.data)
 
-      });
     },
-    mounted(){
-      this.$refs.bg.style.height= window.innerHeight+'px'
+    mounted() {
+      this.$refs.bg.style.height = window.innerHeight + 'px'
+    },
+    computed: {
+      ...mapState(['USER_STATUS']),
     }
   }
 </script>
 
 <style scoped lang="less">
-  .add{
+  .add {
     background: #f5f5f5;
   }
-  .van-nav-bar{
+
+  .van-nav-bar {
     background: #3190e8;
     color: white;
 
-    :before{
+    :before {
       color: white;
       height: 0.2344rem;
       font-size: 0.25rem;
-      font-weight:200;
+      font-weight: 200;
       margin-left: -0.1rem;
       margin-top: -0.1rem;
     }
-    span,div{
+
+    span, div {
       color: white;
     }
-    div{
+
+    div {
       font-weight: 800;
       font-size: 0.1875rem;
     }
   }
 
   /*!*input框*!*/
-  .input2{
+  .input2 {
     background: white;
-  display: inline-block;
-  /*display: block;*/
-  border-top: 1px solid #d8d8d8;
+    display: inline-block;
+    /*display: block;*/
+    border-top: 1px solid #d8d8d8;
     border-bottom: 1px solid #d8d8d8;
-  width: 100%;
-  height: 0.4786rem;
-  line-height: 0.4786rem;
-  font-size: 0.1406rem;
-  padding: 0 0.09375rem;
-  box-sizing: border-box;
-  color: black;
+    width: 100%;
+    height: 0.4786rem;
+    line-height: 0.4786rem;
+    font-size: 0.1406rem;
+    padding: 0 0.09375rem;
+    box-sizing: border-box;
+    color: black;
     margin-top: 0.09375rem;
     font-size: 0.164063rem;
   }
-  .right_jt2{
+
+  .right_jt2 {
     float: right;
     line-height: 0.4886rem;
     font-size: 18px;
@@ -141,12 +144,14 @@
 
   }
 
-  ul{
+  ul {
     margin-top: 0.09375rem;
-    >li:nth-child(1){
+
+    > li:nth-child(1) {
       border-top: 0.5px solid #d9d9d9;
     }
-    li{
+
+    li {
       background: white;
       height: 0.6135rem;
       padding: 0.09375rem;
@@ -155,15 +160,18 @@
       border-bottom: 0.5px solid #d9d9d9;
       color: #333;
       /*line-height: 0.3rem;*/
-      p{
+
+      p {
         line-height: 0.208rem;
 
         /*display: inline-block;*/
       }
-      >span:nth-child(1){
+
+      > span:nth-child(1) {
         line-height: 0.208rem;
       }
-      .X{
+
+      .X {
         float: right;
         font-size: 0.1875rem;
         color: #999999;
@@ -174,10 +182,11 @@
       }
     }
 
-    }
-/*编辑删除按钮*/
-  .delete{
-    position: absolute ;
+  }
+
+  /*编辑删除按钮*/
+  .delete {
+    position: absolute;
     top: 0.15rem;
     right: 0.12rem;
 
@@ -188,7 +197,7 @@
 
   }
 
-  .div2{
+  .div2 {
     width: 3rem;
     display: inline-block;
   }

@@ -101,7 +101,9 @@
         }
         this.changeSearchHistory(this.searchHistory);
         let search = await searchRestaurant(this.userLocation, this.keyword);
-        if (search.length < 1) {
+        console.log(search.status);
+        console.log(search.length);
+        if (search.length < 1 && search.status === undefined || search.status === 0) {
           this.isShowNoRes = true;
           this.history_show = true; // 显示搜索历史
         } else {

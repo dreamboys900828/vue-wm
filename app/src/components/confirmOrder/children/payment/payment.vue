@@ -32,7 +32,7 @@
 
 <script>
   import {mapMutations, mapState} from "vuex";
-  import {placeOrders} from "../../../../service/getData";
+  import {getAddress, placeOrders} from "../../../../service/getData";
   import AlertTip from "../../../common/alertTip/alertTip";
   import Bar from "../../../bar/bar";
   import Loading from "../../../common/loading/loading";
@@ -43,11 +43,7 @@
     created() {
       this.initData();
       // 清空 购物车列表
-      this.shopCarMenuList[this.shopCarTotal._shop_id] = null;
-      this.changeShopCarMenuList(this.shopCarMenuList);
-      // 清空购物车计算列表
-      this.shopCarTotal = null;
-      this.changeShopCarTotal(this.shopCarTotal);
+      this.changeShopCarMenuList(null);
 
     },
     mounted() {
@@ -69,7 +65,13 @@
         // 购物车response
         let checkOutList = this.checkOutList;
         // 选择的默认地址
-        let address_id = this.addressSelectEd.find(v => v.is_user_default === false).id;
+        let address_id;
+        if (Object.keys(this.addressSelectEd).length > 0) {
+          address_id = this.addressSelectEd.find(v => v.is_user_default === false).id;
+        } else {
+          let address = await getAddress(this.USER_STATUS.id);
+          address_id = address[0].id;
+        }
         let entities = [checkOutList.cart.groups[0]];
         let response = await placeOrders(36660, checkOutList.id, address_id, this.calcDescription, entities, this.userLocation, checkOutList.sig);
         if (response.status === 1) {
@@ -100,13 +102,15 @@
       closeTipFun() {
         this.showAlert = false;
         if (this.gotoOrders) {
-          this.$router.push('/order');
+          this.$router.push('/shop/order');
         }
       }
     },
     computed: {
       ...mapState([
-        'checkOutList', 'addressSelectEd', 'remarkText', 'inputText', 'userLocation', 'shopCarTotal', 'shopCarMenuList'
+        'checkOutList', 'addressSelectEd', 'remarkText', 'inputText',
+        'userLocation', 'shopInfo', 'shopCarTotal', 'shopCarMenuList',
+        'USER_STATUS',
       ]),
       // 订单备注信息
       calcDescription() {

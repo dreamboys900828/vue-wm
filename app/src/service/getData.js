@@ -27,6 +27,16 @@ export const groupcity = () => fetch('/v1/cities', {
 });
 
 /**
+ * 获取搜索地址
+ */
+
+export const searchplace = (cityid, value) => fetch('/v1/pois', {
+  type: 'search',
+  city_id: cityid,
+  keyword: value
+});
+
+/**
  * 获取food页面的 category 种类列表
  */
 
@@ -54,6 +64,12 @@ export const foodActivity = (latitude, longitude) => fetch('/shopping/v1/restaur
 });
 
 /**
+ * 获取msite页面地址信息
+ */
+
+export const msiteAddress = geohash => fetch('/v2/pois/' + geohash);
+
+/**
  * 获取msite商铺列表
  */
 export const shopLists = ({latitude, longitude, offset, limit, restaurant_category_id = '', restaurant_category_ids = '', order_by = '', delivery_mode = '', support_ids = []}) => {
@@ -77,6 +93,16 @@ export const shopLists = ({latitude, longitude, offset, limit, restaurant_catego
   };
   return fetch('/shopping/restaurants', data);
 };
+
+/**
+ * 获取msite页面食品分类列表
+ */
+
+export const msiteFoodTypes = geohash => fetch('/v2/index_entry', {
+  geohash,
+  group_type: '1',
+  'flags[]': 'F'
+});
 
 /**
  * 获取shop页面商铺详情
@@ -104,12 +130,12 @@ export const getRatingList = (shopid, offset, tag_name = '') => fetch('/ugc/v2/r
 /**
  * 获取商铺评价分数
  */
-export const ratingScores = shopid => fetch('ugc/v2/restaurants/' + shopid + '/ratings/scores');
+export const ratingScores = shopid => fetch('/ugc/v2/restaurants/' + shopid + '/ratings/scores');
 
 /**
  * 获取商铺评价分类
  */
-export const ratingTags = shopid => fetch('ugc/v2/restaurants/' + shopid + '/ratings/tags');
+export const ratingTags = shopid => fetch('/ugc/v2/restaurants/' + shopid + '/ratings/tags');
 
 /**
  * 搜索地址
@@ -209,4 +235,71 @@ export const searchRestaurant = (geohash, keyword) => fetch('/v4/restaurants', {
   geohash,
   keyword,
   type: 'search'
+});
+
+/**
+ * 账号密码登录
+ */
+export const accountLogin = (username, password, captcha_code) => fetch('/v2/login', {username, password, captcha_code}, 'POST');
+
+/**
+ * 获取图片验证码
+ */
+
+export const getcaptchas = () => fetch('/v1/captchas', {},'POST');
+
+/**
+ * 获取红包
+ */
+
+export const getHongbaoNum = id => fetch('/promotion/v2/users/' + id + '/hongbaos?limit=20&offset=0');
+
+/**
+ * 获取订单列表
+ */
+
+export const getOrderList = (user_id, offset) => fetch('/bos/v2/users/' + user_id + '/orders', {
+  limit: 10,
+  offset,
+});
+
+/**
+ * 获取订单详情
+ */
+
+export const getOrderDetail = (user_id, orderid) => fetch('/bos/v1/users/' + user_id + '/orders/' + orderid + '/snapshot');
+
+/**
+ * 获取服务中心信息
+ */
+
+export const getService = () => fetch('/v3/profile/explain');
+
+/**
+ * 兑换红包
+ */
+
+export const exChangeHongbao = (id, exchange_code, captcha_code) => fetch('/v1/users/' + id + '/hongbao/exchange',{
+  exchange_code,
+  captcha_code,
+}, 'POST');
+
+/**
+ * 退出登录
+ */
+export const signout = () => fetch('/v2/signout');
+
+/**
+ * 删除地址
+ */
+
+export const deleteAddress = (userid, addressid) => fetch( '/v1/users/' + userid + '/addresses/' + addressid, {}, 'DELETE')
+
+/**
+ *个人中心里搜索地址
+ */
+
+export const getSearchAddress = (keyword) => fetch('v1/pois',{
+  keyword:keyword,
+  type:'nearby'
 });

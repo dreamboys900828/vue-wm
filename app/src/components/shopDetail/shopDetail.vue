@@ -183,6 +183,7 @@
       <!--      底部结算框-->
       <bottom-bar v-if="active === 0" @clearShopCar="clearShopCarList"></bottom-bar>
     </div>
+    <loading v-if="loading_show"></loading>
   </div>
 </template>
 
@@ -194,15 +195,17 @@
     ratingTags,
     shopDetails
   } from "../../service/getData";
-  import BScroll from 'better-scroll';
+
   import BottomBar from "../bottom-bar/bottom-bar";
   import {mapMutations, mapState} from 'vuex';
+  import Loading from "../common/loading/loading";
 
   export default {
     name: 'shopDetail',
-    components: {BottomBar},
+    components: {Loading, BottomBar},
     data() {
       return {
+        loading_show: true,
         geohash: '', //geohash位置信息
         _shop_id: null, // 商店ID
         scrollY: 0, //右侧列表滑动的y轴坐标
@@ -261,8 +264,10 @@
         await this.getRatingComment(shopId, 0);
         // 获取商铺评价分数
         this.rating_list_scores = await ratingScores(shopId);
+        console.log(this.rating_list_scores);
         // 获取商铺评价分类
         this.tags = await ratingTags(shopId);
+        this.loading_show = false;
       },
       // 页面滚动
       _initBScroll() {
@@ -318,6 +323,7 @@
       // 获取评论
       async getRatingComment(shopId, offset, tag_name = '') {
         this.ratingList = await getRatingList(shopId, offset, tag_name);
+        console.log(this.ratingList);
       },
       // 跳转商品详情页
       goGoodInfo(image_path, description, month_sales, name, price, rating, rating_count, satisfy_rate, shopId) {

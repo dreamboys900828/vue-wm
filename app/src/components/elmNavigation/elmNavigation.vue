@@ -13,14 +13,14 @@
         <span class="md-body-1">当前定位城市：</span>
         <span class="md-caption">定位不准时，请在城市列表中选择</span>
       </div>
-      <div class="localCity" @click="searchCity(guessCity.id)">
+      <div class="localCity" @click="searchCity(guessCity.id, guessCity.name)">
         <span class="guess-city">{{guessCity.name || '未定位'}}</span>
         <van-icon name="arrow" tag="span" class="arrow-icon"></van-icon>
       </div>
       <section class="hot_city_container">
         <p class="city-title">热门城市</p>
         <ul class="hot-cityList">
-          <li v-for="city in hotCity" :key="city.id" @click="searchCity(city.id)">{{city.name}}</li>
+          <li v-for="city in hotCity" :key="city.id" @click="searchCity(city.id, city.name)">{{city.name}}</li>
           <div class="empty"></div>
         </ul>
       </section>
@@ -28,7 +28,7 @@
       <section class="group_city_container" v-for="(group, index) in sortGroupCity" :key="index">
         <p class="city-title">{{index}}</p>
         <ul class="group-cityList">
-          <li v-for="city in group" :key="city.id" @click="searchCity(city.id)">{{city.name | omitEd}}</li>
+          <li v-for="city in group" :key="city.id" @click="searchCity(city.id, city.name)">{{city.name | omitEd}}</li>
           <div class="empty"></div>
         </ul>
       </section>
@@ -69,8 +69,8 @@
       register() {
         this.$router.push({path: '/register'});
       },
-      searchCity(cityId) {
-        this.$router.push({name: 'searchCity', params: {cities: cityId}});
+      searchCity(cityId, cName) {
+        this.$router.push({name: 'searchCity', params: {cities: cityId, cName: cName}});
       },
       ...mapMutations(['changeUserLocation']),
     },

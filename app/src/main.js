@@ -29,7 +29,7 @@ axios.interceptors.request.use(
   error => {
     return Promise.error(error);
   });
-Vue.use(VueAxios,axios);
+Vue.use(VueAxios, axios);
 
 // 样式重置
 import '@/assets/css/reset.css';
@@ -56,6 +56,8 @@ router.afterEach((to, from) => {
 const store = new Vuex.Store({
   plugins: [createPersistedState()],
   state: {
+    USER_STATUS: {}, // 用户登录状态
+    hbNumber: [], // 红包
     intoRoute: null, // 当前进入的路由
     userLocation: null, // 用户经纬度
     placeHistory: [], // 地区搜索历史
@@ -65,15 +67,22 @@ const store = new Vuex.Store({
     shopCarTotal: {}, // 购物车存取的钱数量商品名等信息
     shopCarMenuList: {}, // 购物车菜单列表
     checkOutList: {}, // 提交购物车成功返回的消息
+    address_list: [], //用户地址列表
     addressSelectEd: [], // 用户地址列表
     invoice: false, // 是否需要发票
     remarkText: {},//可选备注内容
     inputText: '',//输入备注内容
-    address:{}, // 后台地址
+    address: {}, // 后台地址
   },
   mutations: {
-    saveAddress(state,payload){
-      state.address=payload;
+    changeUserStatus(status, payload) {
+      status.USER_STATUS = payload;
+    },
+    changeHbNumber(state, payload) {
+      state.hbNumber = payload;
+    },
+    saveAddress(state, payload) {
+      state.address = payload;
     },
     changePlaceHistory(state, payload) {
       state.placeHistory = payload;
@@ -97,7 +106,7 @@ const store = new Vuex.Store({
       state.shopCarTotal = payload;
     },
     changeShopCarMenuList(state, payload) {
-      Vue.set(state.shopCarMenuList, state.shopInfo.id,payload);
+      Vue.set(state.shopCarMenuList, state.shopInfo.id, payload);
     },
     changeAddressSelectEd(state, payload) {
       state.addressSelectEd = payload;
@@ -183,6 +192,6 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
+  components: {App},
   template: '<App/>'
 });

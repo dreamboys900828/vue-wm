@@ -29,6 +29,7 @@
   import Vue from 'vue';
   import {getStore, setStore} from "../../utils/mUtils";
   import {mapMutations, mapState} from "vuex";
+  import {searchplace} from "../../service/getData";
 
   export default {
     name: 'searchCity',
@@ -52,16 +53,8 @@
     },
     created() {
       // 显示所选该城市信息
-      let cId = this.$route.params.cities;
-      if (cId) {
-        setStore('selectCityId', cId);
-        this.getCityInfo(cId);
-        this.city_id = cId;
-      } else {
-        let lCid = getStore('selectCityId');
-        this.getCityInfo(lCid);
-        this.city_id = lCid;
-      }
+      this.city_id = this.$route.params.cities;
+      this.cName = this.$route.params.cName;
 
       // 调取历史记录
       this.getHistory();
@@ -71,11 +64,6 @@
       goBack() {
         this.$router.go(-1);
       },
-      async getCityInfo(cId) {
-        let data = (await Vue.axios.get('v1/cities/' + cId)).data;
-        this.cName = data.name;
-
-      },
       // 搜索地址
       async getSearchAddress() {
         if (!this.keyword) {
@@ -84,13 +72,13 @@
         }
         this.isTouchSearch = false; // 搜索历史文字是否显示
         this.isAllDeleteShow = false; // 清空所有是否显示
-
-        let getSearchAdd = (await Vue.axios.get('/v1/pois', {
-          params: {
-            city_id: this.city_id,
-            keyword: this.keyword
-          }
-        })).data;
+        // let getSearchAdd = (await Vue.axios.get('/v1/pois', {
+        //   params: {
+        //     city_id: this.city_id,
+        //     keyword: this.keyword
+        //   }
+        // })).data;
+        let getSearchAdd = await searchplace(this.city_id, this.keyword);
         if (getSearchAdd) {
           this.cityList = getSearchAdd;
           this.changePlaceHistory(getSearchAdd);
@@ -100,11 +88,10 @@
       },
       // 获取历史记录
       getHistory() {
-        console.log(this.placeHistory.length);
         if (this.placeHistory.length > 0) {
           this.isAllDeleteShow = true;
           this.cityList = this.placeHistory;
-        }else{
+        } else {
           this.isAllDeleteShow = false;
         }
       },

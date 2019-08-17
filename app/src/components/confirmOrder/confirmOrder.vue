@@ -174,6 +174,7 @@
         this.CHANGE_CHECKOUT_RESPONSE(this.shopCarStatus);
         // 获取最新地址 address_list
         this.address_list = await getAddress(36660);
+
         if (this.address_list < 1) {
           this.showAlert = true;
         }
@@ -224,7 +225,8 @@
       ]),
       getShopByList() {
         let map = new Set();
-        this.shopCarMenuList[this.shopInfo.id].forEach(value => {
+        let arr = this.shopCarMenuList[this.shopInfo.id];
+        arr.forEach(value => {
           value.foods.forEach(v => {
             if (v.count) {
               map.add({

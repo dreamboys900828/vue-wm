@@ -36,7 +36,7 @@
 
     <div class="contain">
       <div class="cart_icon_container" @click="showBox">
-        <div class="little-circle" :class="{'little-circle-disabled': getShopTotalPrice.diff_money >= 0}">
+        <div class="little-circle" :class="{'little-circle-disabled': getShopTotalPrice.diff_money > 0}">
           <i class="iconfont shop-car">&#xe611;</i>
           <i class="total_select_count">{{getShopTotalPrice.totalCount}}</i>
         </div>
@@ -71,7 +71,8 @@
         }
       },
       cutShopCart(food_id) {
-        this.shopCarMenuList[this.shopInfo.id].forEach(value => {
+        let arr = this.shopCarMenuList[this.shopInfo.id];
+        arr.forEach(value => {
           return value.foods.filter(v => {
             if (v.specfoods[0].food_id === food_id) {
               if (v.count > 1) {
@@ -84,10 +85,11 @@
             }
           })
         });
-        this.changeShopCarMenuList(this.shopCarMenuList);
+        this.changeShopCarMenuList(arr);
       },
       addShopCart(food_id) {
-        this.shopCarMenuList[this.shopInfo.id].forEach(value => {
+        let arr = this.shopCarMenuList[this.shopInfo.id];
+        arr.forEach(value => {
           return value.foods.filter(v => {
             if (v.specfoods[0].food_id === food_id) {
               v.count++;
@@ -95,13 +97,12 @@
             }
           })
         });
-        this.changeShopCarMenuList(this.shopCarMenuList);
+        this.changeShopCarMenuList(arr);
       },
       // 清空购物车
       clearCart() {
         // 清空 购物车列表
-        this.shopCarMenuList[this.shopInfo.id] = null;
-        this.changeShopCarMenuList(this.shopCarMenuList);
+        this.changeShopCarMenuList(null);
         this.bottom_show = false;
         this.$emit('clearShopCar');
       },

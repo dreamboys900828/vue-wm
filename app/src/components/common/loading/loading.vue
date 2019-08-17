@@ -61,6 +61,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     @include wh(0.5rem, 0.5rem);
+    z-index: 500;
   }
 
   .load_img {

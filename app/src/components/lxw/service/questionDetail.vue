@@ -8,12 +8,13 @@
       <!--left-arrow-->
       <!--@click-left="onClickLeft"-->
     <!--/>-->
-    <div class="header">
-      <div @click="clickFH">
-        <svg t="1565234426543" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3741" width="16" height="16"><path d="M348.99379407 517.68945384l422.93654668-422.9437849c17.77417782-17.76259666 17.77417782-46.59388232 1e-8-64.35792663-17.76259666-17.77417782-46.59388232-17.77417782-64.35792664 0l-455.12057675 455.12347204c-17.77852076 17.76259666-17.77852076 46.59388232 0 64.35792662l455.1220244 455.12202442c8.88419362 8.88853654 20.53194038 13.33425247 32.17823949 13.33425246s23.29549351-4.44571592 32.17823949-13.33425246c17.77852076-17.76259666 17.77852076-46.59388232 0-64.35792664l-422.93944197-422.94523255z" p-id="3742" fill="#ffffff"></path></svg>
-      </div>
-      <span class="content">{{question}}</span>
-    </div>
+<!--    <div class="header">-->
+<!--      <div @click="clickFH">-->
+<!--        <svg t="1565234426543" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3741" width="16" height="16"><path d="M348.99379407 517.68945384l422.93654668-422.9437849c17.77417782-17.76259666 17.77417782-46.59388232 1e-8-64.35792663-17.76259666-17.77417782-46.59388232-17.77417782-64.35792664 0l-455.12057675 455.12347204c-17.77852076 17.76259666-17.77852076 46.59388232 0 64.35792662l455.1220244 455.12202442c8.88419362 8.88853654 20.53194038 13.33425247 32.17823949 13.33425246s23.29549351-4.44571592 32.17823949-13.33425246c17.77852076-17.76259666 17.77852076-46.59388232 0-64.35792664l-422.93944197-422.94523255z" p-id="3742" fill="#ffffff"></path></svg>-->
+<!--      </div>-->
+<!--      <span class="content">{{question}}</span>-->
+<!--    </div>-->
+    <bar :title="question"></bar>
 
     <div class="content">
       <h2>{{answer}}</h2>
@@ -23,8 +24,10 @@
 </template>
 
 <script>
+  import Bar from "../../bar/bar";
   export default {
     name: "questionDetail",
+    components: {Bar},
     data(){
       return{
         answer:"",
@@ -32,12 +35,6 @@
       }
     },
     methods: {
-      onClickLeft() {
-        this.$router.go(-1);
-      },
-      clickFH(){
-        this.$router.go(-1)
-      }
     },
     created(){
       this.answer = this.$route.query.abc;
@@ -62,30 +59,8 @@
 </script>
 
 <style scoped lang="less">
-
-
-  .header{
-    height: 0.457rem;
-    line-height: 0.457rem;
-    background: #3190eb;
-    text-align: center;
-    div{
-      display: inline-block;
-      width: 0.16rem;
-      float: left;
-      margin-left: 0.1rem;
-      #icom{
-        float: left;
-      }
-    }
-    span{
-     font-size: 0.1875rem;
-      color: white;
-      margin-left: -0.1rem;
-    }
-  }
   .content{
-    padding: 0 0.16406rem 0.46875rem ;
+    padding: 0.45rem 0.16406rem 0.46875rem ;
     box-sizing: border-box;
     /*width: 100%;*/
     line-height: 0.3rem;
